@@ -1,7 +1,6 @@
-<h1>Sign Up Page</h1>
+<h1>Enter your new password below</h1>
 
-<%= form_for @user do |f| %>
-
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
 	<% if @user.errors.any? %>
 	<h3>form is invalid</h3>
 		<ul>
@@ -10,18 +9,11 @@
 			<% end %>
 		</ul>
 	<% end %>
-
-	<%= f.label :email %><br />
-	<%= f.text_field :email %>
-	<br />
 	<%= f.label :password %><br />
 	<%= f.password_field :password %>
 	<br />
 	<%= f.label :password_confirmation %><br />
 	<%= f.password_field :password_confirmation %>
 	<br />
-	<%= f.submit %>
+	<%= f.submit "Reset Password" %>
 <% end %>
-
-
-
