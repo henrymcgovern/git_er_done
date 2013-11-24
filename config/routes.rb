@@ -1,5 +1,5 @@
 GitErDone::Application.routes.draw do
-  
+
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
@@ -7,6 +7,7 @@ GitErDone::Application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
+  resources :tasks
 
   root to: 'splash#index' 
 

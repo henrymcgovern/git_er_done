@@ -1,0 +1,15 @@
+<h1>Saddle up folks, we're gonna git 'er done!</h1>
+
+<p>It don't matter if you're pondering on something or want to git 'er done</p>
+
+<p>git it all outta yer head so you ain't thinkin' on it any more</p>
+
+<%= form_for @task do |f| %>
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+	<%= f.submit "Yep" %>
+<% end %>
+
+<% if !@tasks.empty? %>
+	<p><%= render 'link' %></p>
+<% end %>
