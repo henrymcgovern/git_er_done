@@ -14,6 +14,4 @@ class ApplicationController < ActionController::Base
   	redirect_to login_url, alert: "Not Authorized" if current_user.nil?
   end
 
-
-
 end

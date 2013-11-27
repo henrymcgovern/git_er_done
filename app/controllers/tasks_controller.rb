@@ -6,12 +6,11 @@ class TasksController < ApplicationController
   end
 
   def create
-	@task = Task.new(task_params)
+	@task = current_user.tasks.new(task_params)
 	if @task.save
-	# 	session[:user_id] = @user.id
 		redirect_to new_task_path, notice: "thanks for the task"
-	# else
-	# 	render "new"
+	else
+		render "new"
 	end
   end
 
@@ -38,7 +37,7 @@ class TasksController < ApplicationController
 private
 
 	def task_params
-		params.require(:task).permit(:description)
+		params.require(:task).permit(:description, :user_id)
 	end
 
 
