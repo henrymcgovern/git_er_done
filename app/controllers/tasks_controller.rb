@@ -28,14 +28,6 @@ class TasksController < ApplicationController
 	  end
   end
 
-  # def update_list
-  #   @task = Task.find(params[:id]) 
-  #   if @task.update(params[:category_id].permit(:category_id))
-  #     redirect_to new_task_path
-  #   else
-  #     render 'edit'
-  #   end
-  # end
 
   def destroy
   	@task = Task.find(params[:id])

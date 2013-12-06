@@ -1,22 +1,26 @@
 <p>link table below</p>
+<table>
+  <tr>
+  	<th>Description</th>
+  	<th>Category</th>
+    <th>Modify</th>
+  </tr>
 
-	<th>Description</th>
-	<th>Created at</th>
-	<% @tasks.each do |task| %>
-		
-		<%= form_for task do |t| %>		
-			<%= t.text_field :description, readonly: true%>
-		  <%= t.datetime_field :created_at %>
-      <%= t.radio_button :category_id, "1" %> Git 'er Done
-      <%= t.radio_button :category_id, "2" %> Ponder It
+    <% @tasks.each do |task| %>
+    <tr>  		
+  		<%= form_for task do |t| %>		
+  			<td><%= t.text_field :description, readonly: true%></td>
+        <td>
+          <%= t.radio_button :category_id, "1" %> Git 'er Done
+          <%= t.radio_button :category_id, "2" %> Ponder It
+        </td>
+        <td>
+          <%= link_to "edit", edit_task_path(task) %>
+          <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
+          <%= t.submit 'save' %>
+        </td>
+  	</tr>	
+      <% end %>	
+	 <% end %>
 
-
-			<%= link_to "edit", edit_task_path(t) %>
-			<%= link_to "delete", task_path(t), confirm: "Sure?", method: :delete %>
-			<%= t.submit 'save' %>
-		<% end %>	
-		
-
-
-	<% end %>
-
+</table>  
