@@ -1,14 +1,22 @@
 <p>link table below</p>
 
-<table>
 	<th>Description</th>
 	<th>Created at</th>
-	<% @tasks.each do |t| %>
-		<tr>
-			<td><%= t.description%></td>
-			<td><%= t.created_at%></td>
-			<td><%= link_to "edit", edit_task_path(t) %></td>
-			<td><%= link_to "delete", task_path(t), confirm: "Sure?", method: :delete %></td>
-		</tr>
+	<% @tasks.each do |task| %>
+		
+		<%= form_for task do |t| %>		
+			<%= t.text_field :description, readonly: true%>
+		  <%= t.datetime_field :created_at %>
+      <%= t.radio_button :category_id, "1" %> Git 'er Done
+      <%= t.radio_button :category_id, "2" %> Ponder It
+
+
+			<%= link_to "edit", edit_task_path(t) %>
+			<%= link_to "delete", task_path(t), confirm: "Sure?", method: :delete %>
+			<%= t.submit 'save' %>
+		<% end %>	
+		
+
+
 	<% end %>
-</table>
+

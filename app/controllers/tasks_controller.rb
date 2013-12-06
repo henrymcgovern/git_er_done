@@ -19,13 +19,23 @@ class TasksController < ApplicationController
   end
 
   def update
-  	@task = Task.find(params[:id]) 
-	  if @task.update(params[:task].permit(:description))
+  	@task = Task.find(params[:id])
+        @tasks = Task.find(params[:id])
+	  if @task.update(params[:task].permit(:description, :category_id))
 	    redirect_to new_task_path
 	  else
 	    render 'edit'
 	  end
   end
+
+  # def update_list
+  #   @task = Task.find(params[:id]) 
+  #   if @task.update(params[:category_id].permit(:category_id))
+  #     redirect_to new_task_path
+  #   else
+  #     render 'edit'
+  #   end
+  # end
 
   def destroy
   	@task = Task.find(params[:id])
@@ -37,7 +47,7 @@ class TasksController < ApplicationController
 private
 
 	def task_params
-		params.require(:task).permit(:description, :user_id)
+		params.require(:task).permit(:description, :user_id, :category_id)
 	end
 
 
