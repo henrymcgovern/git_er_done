@@ -7,7 +7,9 @@
 <%= form_for @task do |f| %>
 	<%= f.label :description %>
 	<%= f.text_field :description %>
-	<%= f.submit "Yep" %>
+	<%= f.radio_button :category_id, "1" %> Git 'er Done
+    <%= f.radio_button :category_id, "2" %> Ponder It
+	<%= f.submit "Add Task" %>
 <% end %>
 
 <% if !@tasks.empty? %>

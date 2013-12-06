@@ -20,7 +20,8 @@ class TasksController < ApplicationController
 
   def update
   	@task = Task.find(params[:id])
-        @tasks = Task.find(params[:id])
+    @tasks = Task.find(params[:id])
+    #binding.pry
 	  if @task.update(params[:task].permit(:description, :category_id))
 	    redirect_to new_task_path
 	  else
