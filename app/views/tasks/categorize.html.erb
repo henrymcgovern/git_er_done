@@ -1,0 +1,38 @@
+<h3>categorize it</h3>
+
+<p>ok, we've got a great list of things to do</p>
+<p>now lets break it down by stuff to do right away,</p>
+<p>stuff for later and stuff with moving parts (projects)</p>
+
+<%= form_tag categorize_multiple_tasks_path, method: :put do %>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Modify</th>
+    </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+    <%= fields_for "tasks[]", task do |t| %>
+      <td><%= t.text_field :description, readonly: true %></td>
+
+      <td>
+        <%= t.radio_button :category_id, "1" %> Git 'er Done
+        <%= t.radio_button :category_id, "2" %> It's a Project
+        <%= t.radio_button :category_id, "2" %> Waitin' on Something
+      </td>
+
+      <td>
+        <%= link_to "edit", edit_task_path(task) %>
+        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
+  </table>
+    <p><%= submit_tag 'Update All' %></p>
+<% end %>
+
+<%#= link_to "Git 'er Done!", finish_tasks_path %>
+<%#= link_to "Sort it Out", sort_tasks_path %>

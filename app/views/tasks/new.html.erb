@@ -1,14 +1,13 @@
 <h1>Saddle up folks, we're gonna git 'er done!</h1>
 
-<p>It don't matter if you're pondering on something or want to git 'er done</p>
-
+<p>even if you're just pondering on something,</p>
 <p>git it all outta yer head so you ain't thinkin' on it any more</p>
 
 <%= form_for @task do |f| %>
 	<%= f.label :description %>
 	<%= f.text_field :description %>
-	<%= f.radio_button :category_id, "1" %> Git 'er Done
-    <%= f.radio_button :category_id, "2" %> Ponder It
+	<%= f.radio_button :path_id, "1" %> Do It
+    <%= f.radio_button :path_id, "2" %> Ponder It
 	<%= f.submit "Add Task" %>
 <% end %>
 

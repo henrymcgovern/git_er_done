@@ -1,28 +1,31 @@
-<p>link table below</p>
+<h3> make changes</h3>
+<%= form_tag update_multiple_tasks_path, method: :put do %>
 
   <table>
     <tr>
-    	<th>Description</th>
-    	<th>Category</th>
+      <th>Description</th>
+      <th>Path</th>
       <th>Modify</th>
     </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+    <%= fields_for "tasks[]", task do |t| %>
+      <td><%= t.text_field :description, readonly: true %></td>
 
-      <% @tasks.each do |task| %>
-      <tr>  		
-    		<%= form_for task do |t| %>		
-    			<td><%= t.text_field :description, readonly: true%></td>
-          <td>
-            <%= t.radio_button :category_id, "1" %> Git 'er Done
-            <%= t.radio_button :category_id, "2" %> Ponder It
-          </td>
-          <td>
-            <%= link_to "edit", edit_task_path(task) %>
-            <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
-            <%= t.submit 'update' %>
-          </td>
-    	</tr>	
-        <% end %>	
-  	 <% end %>
+      <td>
+        <%= t.radio_button :path_id, "1" %> Do It
+        <%= t.radio_button :path_id, "2" %> Ponder It
+      </td>
+
+      <td>
+        <%= link_to "edit", edit_task_path(task) %>
+        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
   </table>
+    <p><%= submit_tag 'Update All' %></p>
+<% end %>
 
-
+<%= link_to "Categorize It!", categorize_tasks_path %>

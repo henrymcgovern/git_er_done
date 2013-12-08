@@ -21,12 +21,17 @@ class TasksController < ApplicationController
   def update
   	@task = Task.find(params[:id])
     @tasks = Task.find(params[:id])
-    #binding.pry
-	  if @task.update(params[:task].permit(:description, :category_id))
+	  if @task.update(params[:task].permit(:description, :path_id))
 	    redirect_to new_task_path
 	  else
 	    render 'edit'
 	  end
+  end
+
+
+  def update_multiple
+    Task.update(params[:tasks].keys, params[:tasks].values)
+    redirect_to new_task_path
   end
 
 
@@ -36,11 +41,20 @@ class TasksController < ApplicationController
   	redirect_to new_task_path
   end
 
+  def categorize
+    @tasks= current_user.tasks.where("path_id = ?", '1' )
+  end
+
+    def categorize_multiple
+    Task.update(params[:tasks].keys, params[:tasks].values)
+    redirect_to categorize_tasks_path
+  end
+
 
 private
 
 	def task_params
-		params.require(:task).permit(:description, :user_id, :category_id)
+		params.require(:task).permit(:description, :user_id, :path_id, :category_id)
 	end
 
 

@@ -3,11 +3,18 @@ GitErDone::Application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
+  # get 'categorize', to: 'tasks#categorize', as: 'categorize'
 
   resources :users
   resources :sessions
   resources :password_resets
-  resources :tasks
+  resources :tasks do
+    collection do
+      put :update_multiple
+      put :categorize_multiple
+      get :categorize
+    end
+  end
 
   root to: 'splash#index' 
 
