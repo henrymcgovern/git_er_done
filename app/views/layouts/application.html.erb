@@ -7,15 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <% if current_user %>
-	Logged in as <%= current_user.email %>. 
-	<%= link_to "Log Out", logout_path, :method => :delete %>
+	<p>
+		<%= link_to "Create New Task", new_task_path %>
+		<%= link_to "Categorize!", categorize_tasks_path %>
+		<%= link_to "Git 'er Done!", finish_tasks_path %>
+		<%= link_to "Projects", project_tasks_path %>
+		<%= link_to "Stuff for later", later_tasks_path %>
+	</p>
 <% else %>
 	<%= link_to "Sign Up", signup_path %> or
 	<%= link_to "Log In", login_path %>
 <% end %>
-
 <hr>
 
 <%= yield %>
@@ -23,6 +26,13 @@
 <% flash.each do |key, value| %>
     <p><%= key %>: <%= value %></p>
 <% end %>
-
 </body>
+<% if current_user %>
+	<hr>
+	<p>
+		Logged in as <%= current_user.email %>. 
+		<%= link_to "Log Out", logout_path, :method => :delete %>
+	</p>
+<% else %>
+<% end %>
 </html>
