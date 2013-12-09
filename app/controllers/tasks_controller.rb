@@ -42,14 +42,34 @@ class TasksController < ApplicationController
   end
 
   def categorize
-    @tasks= current_user.tasks.where("path_id = ?", '1' )
+    @tasks= current_user.tasks.where("path_id = ? AND category_id is null", '1')
   end
 
-    def categorize_multiple
+  def categorize_multiple
     Task.update(params[:tasks].keys, params[:tasks].values)
     redirect_to categorize_tasks_path
   end
 
+  def project
+    @task = Task.new
+    @tasks= current_user.tasks.where("path_id = ? AND category_id = ?", '1', '2')
+  end
+
+
+  def later
+    @task = Task.new
+    @tasks= current_user.tasks.where("path_id = ? OR category_id = ?", '2', '3')
+  end
+
+  def finish
+    @tasks = current_user.tasks.where("category_id = ? AND completed_at is null", '1' )
+    @complete_tasks = current_user.tasks.where("category_id = ? AND completed_at is not null", '1' )
+  end
+
+  def complete
+    Task.update_all(["completed_at=?", Time.now], :id => params[:task_ids])
+    redirect_to finish_tasks_path
+  end
 
 private
 

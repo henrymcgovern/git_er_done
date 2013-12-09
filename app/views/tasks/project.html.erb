@@ -1,12 +1,5 @@
-<h3>Categorize your Tasks</h3>
-
-<p>ok, we've got a great list of things to do</p>
-<p>now lets break it down by:</p>
-<ul>
-  <li>what you can do right away</li>
-  <li>projects with several steps</li>
-  <li>stuff for later</li>
-</ul>
+<h3>Work your Projects</h3>
+<p>when you're ready to Git 'er Done, move it on over</p>
 
 <%= form_tag categorize_multiple_tasks_path, method: :put do %>
 
@@ -22,9 +15,11 @@
       <td><%= t.text_field :description, readonly: true %></td>
 
       <td>
+        <%= t.radio_button :category_id, "2" %> Project
         <%= t.radio_button :category_id, "1" %> Git 'er Done
-        <%= t.radio_button :category_id, "2" %> It's a Project
         <%= t.radio_button :category_id, "3" %> Waiting on Something
+        <%= t.radio_button :path_id, "2" %> Ponder It
+
       </td>
 
       <td>
@@ -38,6 +33,15 @@
     <p><%= submit_tag 'Update All' %></p>
 <% end %>
 
+<h4>or you can add a new task:</h4>
+
+<%= form_for @task do |f| %>
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+	<%= f.radio_button :category_id, "1" %> Git 'er Done
+    <%= f.radio_button :category_id, "2" %> Project
+	<%= f.submit "Add Task" %>
+<% end %>
+
 <%= link_to "Git 'er Done!", finish_tasks_path %>
-<%= link_to "Projects", project_tasks_path %>
 <%= link_to "Stuff for later", later_tasks_path %>

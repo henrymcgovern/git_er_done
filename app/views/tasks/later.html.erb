@@ -1,5 +1,10 @@
-<h3> and now you need to decide whether each task is ready to do or is still marinating in your mind</h3>
-<%= form_tag update_multiple_tasks_path, method: :put do %>
+<h3>Tasks For Later</h3>
+
+<p>Peruse at your leisure, and feel free to update any</p>
+
+<p>tasks that are ready for the next step</p>
+
+<%= form_tag update_later_tasks_path, method: :put do %>
 
   <table>
     <tr>
@@ -13,8 +18,10 @@
       <td><%= t.text_field :description, readonly: true %></td>
 
       <td>
-        <%= t.radio_button :path_id, "1" %> Gonna Do It
-        <%= t.radio_button :path_id, "2" %> Gonna Ponder On It
+        <%= t.radio_button :path_id, "2" %> Ponder It
+        <%= t.radio_button :category_id, "1" %> Git 'er Done
+        <%= t.radio_button :category_id, "2" %> It's a Project
+        <%= t.radio_button :category_id, "3" %> Waiting on Something
       </td>
 
       <td>
@@ -28,4 +35,5 @@
     <p><%= submit_tag 'Update All' %></p>
 <% end %>
 
-<%= link_to "Next: Categorize Whatcha Gonna Do!", categorize_tasks_path %>
+<%= link_to "Projects", project_tasks_path %>
+<%= link_to "Git 'er Done!", finish_tasks_path %>

@@ -1,0 +1,25 @@
+<h1>Last Stop before 'Done'</h1>
+<p>once the hard work is over, check the box and mark it complete</p>
+
+<%= form_tag complete_tasks_path, :method => :put do %>
+  <ul>
+  <% for task in @tasks %>
+    <li>
+      <%= check_box_tag "task_ids[]", task.id %>
+      <%= task.description %>
+    </li>
+  <% end %>
+  </ul>
+  <%= submit_tag "Mark as Complete" %>
+<% end %>
+<%= link_to "Projects", project_tasks_path %>
+<%= link_to "Stuff for later", later_tasks_path %>
+
+<h3>complete tasks</h3>
+  <ul>
+  <% for task in @complete_tasks %>
+    <li>
+      <%= task.description %>
+    </li>
+  <% end %>
+  </ul>

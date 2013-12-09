@@ -12,7 +12,12 @@ GitErDone::Application.routes.draw do
     collection do
       put :update_multiple
       put :categorize_multiple
+      put :update_later
+      put :complete
       get :categorize
+      get :project
+      get :later
+      get :finish
     end
   end
 
