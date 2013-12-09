@@ -71,6 +71,11 @@ class TasksController < ApplicationController
     redirect_to finish_tasks_path
   end
 
+  def list
+   @tasks = current_user.tasks
+  end
+
+
 private
 
 	def task_params

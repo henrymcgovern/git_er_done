@@ -1,0 +1,24 @@
+<h3>all open tasks</h3>
+<% @tasks.each do |task| %>
+  <table>
+    <tr>
+    <%= fields_for "tasks[]", task do |t| %>
+      <td><%= t.text_field :description, readonly: true %></td>
+
+      <td>
+        <%= t.radio_button :path_id, "1" %> Gonna Do It
+        <%= t.radio_button :path_id, "2" %> Gonna Ponder On It
+        |
+        <%= t.radio_button :category_id, "1" %> Git 'er Done
+        <%= t.radio_button :category_id, "2" %> It's a Project
+        <%= t.radio_button :category_id, "3" %> Waiting on Something
+      </td>
+
+      <td>
+        <%= link_to "edit description", edit_task_path(task) %>
+        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
+ </table>

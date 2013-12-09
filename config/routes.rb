@@ -18,6 +18,7 @@ GitErDone::Application.routes.draw do
       get :project
       get :later
       get :finish
+      get :list
     end
   end
 
