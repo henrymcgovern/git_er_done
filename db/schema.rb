@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209022807) do
+ActiveRecord::Schema.define(version: 20131220012531) do
 
   create_table "tasks", force: true do |t|
     t.text     "description"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20131209022807) do
     t.datetime "password_reset_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "guest"
   end
 
 end
