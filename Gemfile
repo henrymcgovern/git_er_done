@@ -45,6 +45,8 @@ end
 
 gem 'pry'
 
+gem 'foundation-rails'
+
 #gem "ruby-trello", "~> 1.1.0"
 
 # Use unicorn as the app server
