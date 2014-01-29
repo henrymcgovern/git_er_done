@@ -1,31 +1,67 @@
-<h3> and now you need to decide whether each task is ready to do or is still marinating in your mind</h3>
 <%= form_tag update_multiple_tasks_path, method: :put do %>
-
-  <table>
-    <tr>
-      <th>Description</th>
-      <th>Path</th>
-      <th>Modify</th>
-    </tr>
+  <div class="row">
+    <div class="small-9 columns">
+      Description
+    </div>
+    <div class="small-1 columns">
+      Do It
+    </div>
+    <div class="small-1 columns">
+      Plan It
+    </div>
+    <div class="small-1 columns">
+      Save It
+    </div>
+  </div>
   <% @tasks.each do |task| %>
-    <tr>
+    <div class="row">
     <%= fields_for "tasks[]", task do |t| %>
-      <td><%= t.text_field :description, readonly: true %></td>
-
-      <td>
-        <%= t.radio_button :path_id, "1" %> Do It
-        <%= t.radio_button :path_id, "2" %> Ponder It
-      </td>
-
-      <td>
-        <%= link_to "edit description", edit_task_path(task) %>
-        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
-      </td>
+      <div class="small-6 medium-9 columns">
+        <%= t.text_field :description, readonly: true %>
+      </div>
+      <div class="small-2 medium-1 columns">
+        <%= t.radio_button :path_id, "1" %>
+      </div>
+      <div class="small-2 medium-1 columns">
+        <%= t.radio_button :path_id, "2" %>
+      </div>
+      <div class="small-2 medium-1 columns">
+        <%= t.radio_button :path_id, "3" %>
+      </div>
     <% end %>
-    </tr>
+    </div>
   <% end %>
-  </table>
-    <p><%= submit_tag 'Update All' %></p>
+  <p><%= submit_tag 'Update All', class: "button radius" %></p>
 <% end %>
+<p>once you've got your list, it's time to take the next step</p>
+<%= link_to "Categorize It!", categorize_tasks_path, class: "button radius" %>
 
-<%= link_to "Next: Categorize Whatcha Gonna Do!", categorize_tasks_path %>
+<!--
+<div class="row">
+  <div class="small-12 columns">
+    <%= form_tag update_multiple_tasks_path, method: :put do %>
+      <table>
+        <tr>
+          <th>Description</th>
+          <th>Do It</th>
+          <th>Plan It</th>
+          <th>Save It</th>
+        </tr>
+      <% @tasks.each do |task| %>
+        <tr>
+        <%= fields_for "tasks[]", task do |t| %>
+          <td><%= t.text_field :description, readonly: true %></td>
+          <td><%= t.radio_button :path_id, "1" %></td>
+          <td><%= t.radio_button :path_id, "2" %></td>
+          <td><%= t.radio_button :path_id, "3" %></td>
+        <% end %>
+        </tr>
+      <% end %>
+      </table>
+        <p><%= submit_tag 'Update All', class: "button radius" %></p>
+    <% end %>
+    <p>once you've got your list, it's time to take the next step</p>
+    <%= link_to "Categorize It!", categorize_tasks_path, class: "button radius" %>
+  </div>
+</div>
+-->

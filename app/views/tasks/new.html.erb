@@ -1,21 +1,24 @@
-<h1>We're gonna git 'er done!</h1>
-<h3>But first, you need to create all of your tasks</h3>
-
-<p>even if you're just pondering on something, write it down</p>
-<p>then decide if it's something you're</p>
-<ul>
-	<li>ready to do</li>
-	<li>thinking over still</li>
-</ul>
-
-<%= form_for @task do |f| %>
-	<%= f.label :description %>
-	<%= f.text_field :description %>
-	<%#= f.radio_button :path_id, "1" %> <!--Do It
-    <%#= f.radio_button :path_id, "2" %> Ponder It -->
-	<%= f.submit "Add Task" %>
-<% end %>
-
-<% if !@tasks.empty? %>
-	<p><%= render 'link' %></p>
-<% end %>
+  <div class="row">
+    <div class="small-12 columns">
+      <h1>Nice, start adding tasks!</h1>
+    </div>
+  </div>
+  <%= form_for @task do |f| %> 	
+    <div class="row">
+      <div class="small-9 columns">
+        <%= f.text_field :description %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 columns">
+        <%= f.submit "Add Task", class: "button radius" %>
+      </div>
+    </div>
+  <% end %>
+    <div class="row">
+      <div class="small-12 columns">
+        <% if !@tasks.empty? %>
+          <p><%= render 'link' %></p>
+        <% end %>
+      </div>
+    </div>
