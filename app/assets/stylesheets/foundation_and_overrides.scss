@@ -73,6 +73,12 @@
 // $xlarge-range: (90.063em, 120em);
 // $xxlarge-range: (120.063em);
 
+$small-range: (0em, 25em);
+$medium-range: (25.063em, 50em);
+$large-range: (50.063em, 90em);
+$xlarge-range: (90.063em, 120em);
+// $xxlarge-range: (120.063em);
+
 // $screen: "only screen";
 
 // $landscape: "#{$screen} and (orientation: landscape)";
