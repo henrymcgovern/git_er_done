@@ -5,5 +5,6 @@ class Task < ActiveRecord::Base
  	where(user_id: current_user)
   end
 
+  acts_as_list
 
 end

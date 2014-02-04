@@ -47,6 +47,10 @@ gem 'pry'
 
 gem 'foundation-rails'
 
+gem 'jquery-ui-rails'
+
+gem 'acts_as_list'
+
 #gem "ruby-trello", "~> 1.1.0"
 
 # Use unicorn as the app server

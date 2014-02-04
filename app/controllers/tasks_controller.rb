@@ -28,12 +28,17 @@ class TasksController < ApplicationController
 	  end
   end
 
+  def sort
+    params[:task].each_with_index do |id, index|
+      Task.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
 
   def update_multiple
     Task.update(params[:tasks].keys, params[:tasks].values)
     redirect_to new_task_path
   end
-
 
   def destroy
   	@task = Task.find(params[:id])
@@ -62,11 +67,11 @@ class TasksController < ApplicationController
   end
 
   def finish
-    @tasks = current_user.tasks.where("category_id = ? AND completed_at is null", '1' )
-    @complete_tasks = current_user.tasks.where("category_id = ? AND completed_at is not null", '1' )
+    @tasks = current_user.tasks.where("category_id = ? AND completed_at is null", '1' ).order("position")
+    @completed_tasks = current_user.tasks.where("category_id = ? AND completed_at is not null", '1' )
   end
 
-  def complete
+  def completed
     Task.update_all(["completed_at=?", Time.now], :id => params[:task_ids])
     redirect_to finish_tasks_path
   end
@@ -75,12 +80,10 @@ class TasksController < ApplicationController
    @tasks = current_user.tasks
   end
 
-
 private
 
 	def task_params
 		params.require(:task).permit(:description, :user_id, :path_id, :category_id)
 	end
-
 
 end

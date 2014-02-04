@@ -1,25 +1,26 @@
-<h1>Last Stop before 'Done'</h1>
-<p>once the hard work is over, check the box and mark it complete</p>
-
-<%= form_tag complete_tasks_path, :method => :put do %>
-  <ul>
+<h1>Do It!</h1>
+<h3>drag n' drop to sort</h3> 
+<br>
+<%= form_tag completed_tasks_path, :method => :put do %>
+  <ul id="tasks" data-update-url="<%= sort_tasks_url %>">
   <% for task in @tasks %>
-    <li>
-      <%= check_box_tag "task_ids[]", task.id %>
-      <%= task.description %>
-    </li>
+    <%= content_tag_for(:li, task) do %>
+      <span class="handle">
+        <%= check_box_tag "task_ids[]", task.id %>
+        <%= task.description %>
+      </span>
+    <% end %>
   <% end %>
-  </ul>
-  <%= submit_tag "Mark as Complete" %>
 <% end %>
-<%= link_to "Projects", project_tasks_path %>
-<%= link_to "Stuff for later", later_tasks_path %>
+<%= submit_tag "Mark as Complete", class: 'button radius' %>
+<p>check the box and mark complete</p>
 
-<h3>complete tasks</h3>
-  <ul>
-  <% for task in @complete_tasks %>
-    <li>
-      <%= task.description %>
-    </li>
+<% if !@completed_tasks.empty? %>
+  <hr>
+  <h2>completed tasks</h2>
+<% end %>
+  <% for task in @completed_tasks %>
+      <ul>
+        <li><%= task.description %></li>
+      </ul>
   <% end %>
-  </ul>

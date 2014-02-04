@@ -10,3 +10,11 @@ div.slideshow-wrapper ol li {
 		float:left;
 		//fixes orbit bullets from being vertical
 	}
+
+.handle {
+	list-style:none;
+	cursor: move;
+	}
+
+.task { list-style:none; }
+

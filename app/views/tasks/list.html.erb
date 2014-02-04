@@ -1,24 +1,19 @@
 <h3>all open tasks</h3>
 <% @tasks.each do |task| %>
-  <table>
-    <tr>
+  <div class="row">
     <%= fields_for "tasks[]", task do |t| %>
-      <td><%= t.text_field :description, readonly: true %></td>
-
-      <td>
-        <%= t.radio_button :path_id, "1" %> Gonna Do It
-        <%= t.radio_button :path_id, "2" %> Gonna Ponder On It
-        |
-        <%= t.radio_button :category_id, "1" %> Git 'er Done
-        <%= t.radio_button :category_id, "2" %> It's a Project
-        <%= t.radio_button :category_id, "3" %> Waiting on Something
-      </td>
-
-      <td>
-        <%= link_to "edit description", edit_task_path(task) %>
-        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
-      </td>
+      <div class="small-12 large-6 columns">  
+        <%= t.text_field :description, readonly: true %>
+      </div>
+      <div class="small-12 large-3 columns">
+        <%= t.radio_button :category_id, "1" %> Do It
+        <%= t.radio_button :category_id, "2" %> Plan It
+        <%= t.radio_button :category_id, "3" %> Later
+      </div>
+      <div class="small-12 large-3 columns">
+        <%= link_to "edit description", edit_task_path(task), class: "tiny button radius" %>
+        <%= link_to "delete", task_path(task), method: :delete, class: "tiny button radius"%>
+      </div>
     <% end %>
-    </tr>
-  <% end %>
- </table>
+  </div>
+<% end %>

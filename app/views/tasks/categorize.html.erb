@@ -35,9 +35,5 @@
     </tr>
   <% end %>
   </table>
-    <p><%= submit_tag 'Update All' %></p>
+    <p><%= submit_tag 'Update All', class: 'button radius' %></p>
 <% end %>
-
-<%= link_to "Git 'er Done!", finish_tasks_path %>
-<%= link_to "Projects", project_tasks_path %>
-<%= link_to "Stuff for later", later_tasks_path %>
