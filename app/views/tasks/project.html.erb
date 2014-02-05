@@ -1,47 +1,57 @@
-<h3>Work your Projects</h3>
-<p>when you're ready to Git 'er Done, move it on over</p>
-
-<%= form_tag categorize_multiple_tasks_path, method: :put do %>
-
-  <table>
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Modify</th>
-    </tr>
-  <% @tasks.each do |task| %>
-    <tr>
-    <%= fields_for "tasks[]", task do |t| %>
-      <td><%= t.text_field :description, readonly: true %></td>
-
-      <td>
-        <%= t.radio_button :category_id, "2" %> Project
-        <%= t.radio_button :category_id, "1" %> Git 'er Done
-        <%= t.radio_button :category_id, "3" %> Waiting on Something
-        <%= t.radio_button :path_id, "2" %> Ponder It
-
-      </td>
-
-      <td>
-        <%= link_to "edit description", edit_task_path(task) %>
-        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
-      </td>
-    <% end %>
-    </tr>
-  <% end %>
-  </table>
-    <p><%= submit_tag 'Update All' %></p>
+<div class="row">
+  <div class="small-12 columns">
+    <h3>Work your Projects</h3>
+  </div>
+</div>
+<% if @tasks.empty? %>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>you don't have any tasks to plan</p>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>when you're ready to Git 'er Done, move it on over</p>
+    </div>
+  </div>
+      <%= form_tag update_multiple_tasks_path, method: :put do %>
+  <div class="row">
+          <% @tasks.each do |task| %>
+            
+            <%= fields_for "tasks[]", task do |t| %>
+              <div class="small-12 large-8 columns">
+                <%= t.text_field :description %>
+              </div>
+              <div class="small-6 large-2 columns">
+                <%= t.radio_button :category_id, "1" %>
+                <%= t.label :category_id, 'Do It' %>
+              </div>
+              <div class="small-6 large-2 columns">
+                <%= t.radio_button :category_id, "3" %>
+                <%= t.label :category_id, 'Later' %>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <p><%= submit_tag 'Update All', class: "button radius" %></p>
+              </div>
+          </div>
+        <% end %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= link_to "Do It!", finish_tasks_path, class: "button radius" %>
+      <%= link_to "Later", later_tasks_path, class: "button radius" %>
+    </div>
+  </div>
 <% end %>
 
-<h4>or you can add a new task:</h4>
-
-<%= form_for @task do |f| %>
-	<%= f.label :description %>
-	<%= f.text_field :description %>
-	<%= f.radio_button :category_id, "1" %> Git 'er Done
-    <%= f.radio_button :category_id, "2" %> Project
-	<%= f.submit "Add Task" %>
-<% end %>
-
-<%= link_to "Git 'er Done!", finish_tasks_path %>
-<%= link_to "Stuff for later", later_tasks_path %>
+<script type="text/javascript">
+    $('input:radio').screwDefaultButtons({
+        image: 'url("/assets/radioSmall.jpg")',
+        width: 42.5,
+        height: 42.5
+    });
+</script>

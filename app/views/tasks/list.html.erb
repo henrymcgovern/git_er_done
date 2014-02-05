@@ -3,7 +3,7 @@
   <div class="row">
     <%= fields_for "tasks[]", task do |t| %>
       <div class="small-12 large-6 columns">  
-        <%= t.text_field :description, readonly: true %>
+        <%= t.text_field :description %>
       </div>
       <div class="small-12 large-3 columns">
         <%= t.radio_button :category_id, "1" %> Do It
@@ -11,7 +11,6 @@
         <%= t.radio_button :category_id, "3" %> Later
       </div>
       <div class="small-12 large-3 columns">
-        <%= link_to "edit description", edit_task_path(task), class: "tiny button radius" %>
         <%= link_to "delete", task_path(task), method: :delete, class: "tiny button radius"%>
       </div>
     <% end %>

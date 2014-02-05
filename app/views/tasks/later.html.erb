@@ -1,39 +1,38 @@
 <h3>Tasks For Later</h3>
 
-<p>Peruse at your leisure, and feel free to update any</p>
+<% if @tasks.empty? %>
+  <p>you don't have any tasks categorized for later</p>
+  <% else %>
 
-<p>tasks that are ready for the next step</p>
+  <p>Peruse at your leisure, and feel free to update any</p>
 
-<%= form_tag update_later_tasks_path, method: :put do %>
+  <p>tasks that are ready for the next step</p>
 
-  <table>
-    <tr>
-      <th>Description</th>
-      <th>Path</th>
-      <th>Modify</th>
-    </tr>
-  <% @tasks.each do |task| %>
-    <tr>
-    <%= fields_for "tasks[]", task do |t| %>
-      <td><%= t.text_field :description, readonly: true %></td>
+  <%= form_tag update_multiple_tasks_path, method: :put do %>
 
-      <td>
-        <%= t.radio_button :path_id, "2" %> Ponder It
-        <%= t.radio_button :category_id, "1" %> Git 'er Done
-        <%= t.radio_button :category_id, "2" %> It's a Project
-        <%= t.radio_button :category_id, "3" %> Waiting on Something
-      </td>
-
-      <td>
-        <%= link_to "edit description", edit_task_path(task) %>
-        <%= link_to "delete", task_path(task), confirm: "Sure?", method: :delete %>
-      </td>
-    <% end %>
-    </tr>
+    <% @tasks.each do |task| %>
+      <div class="row">
+        <%= fields_for "tasks[]", task do |t| %>
+          <div class="small-12 large-8 columns">
+            <%= t.text_field :description %>
+          </div>
+          <div class="small-6 large-2 columns">
+            <%= t.radio_button :category_id, "1" %>
+            <%= t.label :category_id, 'Do It' %>
+          </div>
+          <div class="small-6 large-2 columns">
+            <%= t.radio_button :category_id, "2" %>
+            <%= t.label :category_id, 'Plan It' %>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+    <p><%= submit_tag 'Update All', class: "button radius" %></p>
   <% end %>
-  </table>
-    <p><%= submit_tag 'Update All' %></p>
-<% end %>
 
-<%= link_to "Projects", project_tasks_path %>
-<%= link_to "Git 'er Done!", finish_tasks_path %>
+  <h3>don't forget to click 'update' before moving on</h3>
+
+  <%= link_to "Do It", finish_tasks_path, class: "button radius" %>
+
+  <%= link_to "Plan It", project_tasks_path, class: "button radius" %>
+<% end %>

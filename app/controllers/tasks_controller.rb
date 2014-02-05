@@ -37,7 +37,7 @@ class TasksController < ApplicationController
 
   def update_multiple
     Task.update(params[:tasks].keys, params[:tasks].values)
-    redirect_to new_task_path
+    redirect_to(:back)
   end
 
   def destroy
@@ -57,13 +57,13 @@ class TasksController < ApplicationController
 
   def project
     @task = Task.new
-    @tasks= current_user.tasks.where("path_id = ? AND category_id = ?", '1', '2')
+    @tasks= current_user.tasks.where("category_id = ?", '2' )
   end
 
 
   def later
     @task = Task.new
-    @tasks= current_user.tasks.where("path_id = ? OR category_id = ?", '2', '3')
+    @tasks= current_user.tasks.where("category_id = ?", '3')
   end
 
   def finish

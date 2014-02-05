@@ -16,8 +16,8 @@
   <nav class="top-bar" data-topbar>
 	  <ul class="title-area">
 	    <li class="name">
-	      <h1 id="logo_long">Redneck Task Management</h1>
-	      <h1 id="logo_short">Redneck Tasks</h1>
+	      <a href="/"><h1 id="logo_long">Redneck Task Management</h1></a>
+	      <a href="/"><h1 id="logo_short">Redneck Tasks</h1></a>
 	    </li>
 	    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	  </ul>
@@ -25,17 +25,15 @@
 	    <ul class="right">
     	<% if current_user %>
 	      <li class="divider"></li>
-	      <li><%= link_to "Add Task", new_task_path %></li>
-	      <li class="divider"></li>
-	      <li><%= link_to "Categories", categorize_tasks_path %></li>
+	      <li><%= link_to "Tasks", new_task_path %></li>
 	      <li class="divider"></li>
 	      <li><%= link_to "Do It", finish_tasks_path %></li>
 	      <li class="divider"></li>
 	      <li><%= link_to "Plan It", project_tasks_path %></li>
 	      <li class="divider"></li>
-	      <li><%= link_to "Save It", later_tasks_path %></li>
+	      <li><%= link_to "Later", later_tasks_path %></li>
 	      <li class="divider"></li>
-	      <li><%= link_to "List", list_tasks_path %></li>
+	      <li><%= link_to "Full List", list_tasks_path %></li>
 		<% else %>
 	      <li class="divider"></li>
 	      <li><%= link_to "Log In", login_path %></li>

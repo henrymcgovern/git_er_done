@@ -1,12 +1,14 @@
   <div class="row">
     <div class="small-12 columns">
-      <h1>Nice, start adding tasks!</h1>
+      <h2>Nice, start typing!</h2>
     </div>
   </div>
+  
   <%= form_for @task do |f| %> 	
     <div class="row">
-      <div class="small-9 columns">
-        <%= f.text_field :description %>
+      <div class="small-12 columns">
+      <h3>1) add tasks</h3>
+        <%= f.text_field :description,  placeholder: "enter new task here" %>
       </div>
     </div>
     <div class="row">
