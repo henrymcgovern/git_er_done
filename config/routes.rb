@@ -20,6 +20,8 @@ GitErDone::Application.routes.draw do
       get :finish
       get :list
       post :sort
+      get :eloqua
+      post :eloqua
     end
   end
 

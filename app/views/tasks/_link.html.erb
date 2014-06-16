@@ -31,6 +31,13 @@
   <p><%= submit_tag 'Update All', class: "button radius" %></p>
 <% end %>
 <h3>don't forget to click 'update' before moving on</h3>
+  <div class="row">
+      <div class="small-12 columns">
+      <% flash.each do |key, value| %>
+        <p><%= key %>: <%= value %></p>
+      <% end %>
+    </div>
+  </div>
 
 <%= link_to "Do It", finish_tasks_path, class: "button radius" %>
 

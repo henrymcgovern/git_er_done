@@ -43,10 +43,13 @@
 	</nav>
 
     <%= yield %>
-
-	<% flash.each do |key, value| %>
-		<p><%= key %>: <%= value %></p>
-	<% end %>
+	<div class="row">
+    	<div class="small-12 columns">
+			<% flash.each do |key, value| %>
+				<p><%= key %>: <%= value %></p>
+			<% end %>
+		</div>
+    </div>
 
     <%= javascript_include_tag "application" %>
 
@@ -54,15 +57,19 @@
 
   <br>
 	<hr>
-	<% if current_user %>
-		Logged in as <strong><%= current_user.name %></strong>.
-		<% if current_user.guest? %>
-		    <%= link_to "Become a Member", signup_path %>
-	 	<% else %>
-			<%= link_to "Log Out", logout_path, :method => :delete %>
-		<% end %>
-	<% else %>
-	<% end %>
+	  <div class="row">
+    	<div class="small-12 columns">
+			<% if current_user %>
+				Logged in as <strong><%= current_user.name %></strong>.
+				<% if current_user.guest? %>
+				    <%= link_to "Become a Member", signup_path %>
+			 	<% else %>
+					<%= link_to "Log Out", logout_path, :method => :delete %>
+				<% end %>
+			<% else %>
+			<% end %>
+    	</div>
+    </div>
 
 <%= javascript_include_tag "application" %>
 <script type="text/javascript">$(function(){ $(document).foundation(); });</script>
