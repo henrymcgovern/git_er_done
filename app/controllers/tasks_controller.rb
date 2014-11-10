@@ -2,7 +2,7 @@ class TasksController < ApplicationController
  
   def new
   	@task = Task.new
-  	@tasks= current_user.tasks.where("completed_at is null")
+  	@tasks= current_user.tasks.where("completed_at is null AND category_id is null")
   end
 
   def create
